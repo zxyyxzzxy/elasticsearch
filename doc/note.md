@@ -1,0 +1,46 @@
+# elasticsearch #
+## 起源 ##
+![](https://i.imgur.com/y7dGEyt.jpg)
+
+> 当前是云计算和数据快速增长的时代,今天的应用程序正以PB级和ZB级的速度生产数据，但人们依然在不停的追求更高更快的性能需求。随着数据的堆积，如何快速有效的搜索这些数据，成为对后端服务的挑战。本文，我们将比较业界两个最流行的开源搜索引擎，Solr和ElasticSearch。两者都建立在Apache Lucene开源平台之上，它们的主要功能非常相似，但是在部署的易用性，可扩展性和其他功能方面也存在巨大差异。
+
+### 关于Apache Solr ###
+Apache Solr基于业界大名鼎鼎的java开源搜索引擎Lucene，Lucene更多的是一个软件包，还不能称之为搜索引擎，而solr则完成对lucene的封装，是一个真正意义上的搜索引擎框架。在过去的十年里，solr发展壮大，拥有广泛的用户群体。solr提供分布式索引、分片、副本集、负载均衡和自动故障转移和恢复功能。如果正确部署，良好管理，solr就能够成为一个高可靠、可扩展和高容错的搜索引擎。不少互联网巨头，如Netflix，eBay，Instagram和Amazon（CloudSearch）均使用Solr。
+
+solr的主要特点：
+
+- 全文索引
+- 高亮
+- 分面搜索
+- 实时索引
+- 动态聚类
+- 数据库集成
+- NoSQL特性和丰富的文档处理（例如Word和PDF文件）
+
+### 关于Elasticsearch ###
+与solr一样，Elasticsearch构建在Apache Lucene库之上，同是开源搜索引擎。Elasticsearch在Solr推出几年后才面世的，通过REST和schema-free（不需要预先定义 Schema，solr是需要预先定义的）的JSON文档提供分布式、多租户全文搜索引擎。并且官方提供Java，Groovy，PHP，Ruby，Perl，Python，.NET和Javascript客户端。
+
+分布式搜索引擎包含可以划分为分片（shard）的索引，每一个分片可以有多个副本（replicas）。每个Elasticsearch节点可以有一个或多个分片，其引擎既同时作为协调器（coordinator），将操作转发给正确的分片。
+
+Elasticsearch可扩展为准实时搜索引擎。其中一个关键特性是多租户功能，可根据不同的用途分索引，可以同时操作多个索引。
+
+Elasticsearch主要特性：
+
+- 分布式搜索
+- 多租户
+- 查询统计分析
+- 分组和聚合
+
+#### 数据源 ####
+Solr接受来自不同来源的数据，包括XML文件，逗号分隔符（CSV）文件和从数据库中的表提取的数据以及常见的文件格式（如Microsoft Word和PDF）。
+
+Elasticsearch还支持其他来源的数据，例如ActiveMQ，AWS SQS，DynamoDB（Amazon NoSQL），FileSystem，Git，JDBC，JMS，Kafka，LDAP，MongoDB，neo4j，RabbitMQ，Redis，Solr和Twitter。还有各种插件可用。
+
+#### 搜索 ####
+Solr专注于文本搜索，而Elasticsearch则常用于查询、过滤和分组分析统计，Elasticsearch背后的团队也努力让这些查询更为高效。因此当比较两者时，对那些不仅需要文本搜索，同时还需要复杂的时间序列搜索和聚合的应用程序而言，毫无疑问Elasticsearch是最佳选择。
+
+#### 集群 ####
+Elasticsearch非常易于扩展，拥有足够多的需要大集群的使用案例。
+Solr 基于Apache ZooKeeper也实现了类似ES的分布式部署模式。ZooKeeper是成熟和广泛使用的独立应用程序。
+相对比，Elasticsearch有一个内置的类似ZooKeeper的名为Zen的组件，通过内部的协调机制来维护集群状态。
+可以说Elasticsearch是专为云而设计，是分布式首选。
